@@ -43,6 +43,16 @@ impl_web! {
                 _ => Ok( format!("not a proper PESEL number"))
             }
         }
+
+        #[get("/pesel/:year/:month/:day/:gender")]
+        fn pesel_creation(&self, year: u16, month: u8, day: u8, gender: String) -> Result<String, ()> {
+            let biological_gender = match gender.as_str() {
+                "m" => pesel::pesel::PeselGender::Male,
+                _ => pesel::pesel::PeselGender::Female
+            };
+            let pesel = pesel::pesel::PESEL::new(year, month, day, biological_gender);
+            Ok( format!("{}", pesel))
+        }
     }
 }
 
