@@ -10,3 +10,5 @@ edition = "2018"
 actix-web = "2.0.0"
 actix-rt = "1.0.0"
 pesel = "0.1.1"
+serde = { version = "1.0.105", features = ["derive"] }
+serde_json = "1.0.48"
